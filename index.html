@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Challenge your memory with our free online Memory Test game. Test and improve your short-term memory capacity with increasing difficulty levels.">
+    <title>Memory Test Challenge - Test & Improve Your Memory Skills</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --text-color: #1f2937;
+            --light-bg: #f8fafc;
+            --section-spacing: 3rem;
+            --content-spacing: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 
+                         'PingFang SC', 'Microsoft YaHei', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero > * {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            color: whitesmoke
+        }
+
+        section {
+            padding: var(--section-spacing) 0;
+            position: relative;
+        }
+
+        section > * {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section:nth-child(odd)::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100%;
+            background-color: var(--light-bg);
+            z-index: -1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin: 2rem auto var(--section-spacing);
+            color: var(--primary-color);
+            text-align: center;
+            font-weight: 700;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        p {
+            color: #4b5563;
+            margin-bottom: var(--content-spacing);
+        }
+
+        .features, .benefits {
+            margin: var(--content-spacing) auto 0;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .feature-card, .benefit-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.02),
+                        0 4px 10px rgba(0, 0, 0, 0.08),
+                        0 8px 20px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover, .benefit-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.03),
+                        0 8px 16px rgba(0, 0, 0, 0.1),
+                        0 16px 32px rgba(0, 0, 0, 0.06);
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 900px;
+            height: 650px;
+            margin: var(--content-spacing) auto;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.02),
+                        0 4px 10px rgba(0, 0, 0, 0.08),
+                        0 8px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .game-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            color: #4b5563;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-spacing: 3rem;
+                --content-spacing: 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: var(--content-spacing);
+            }
+
+            .features, .benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        h1, h2, h3 {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 
+                         'PingFang SC', 'Microsoft YaHei', sans-serif;
+            letter-spacing: -0.02em; /* 稍微调整字母间距 */
+        }
+
+        section h2:first-child {
+            margin-top: 4rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero + section h2 {
+            margin-top: 3rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Memory Test Challenge</h1>
+        <p>Test and enhance your memory capacity with our engaging number memorization game</p>
+    </div>
+
+    <section id="play-game">
+        <h2>Play the Game</h2>
+        <div class="game-container">
+            <iframe src="game.html" title="Memory Test Challenge Game"></iframe>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About the Memory Test</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>What is Memory Test Challenge?</h3>
+                <p>Our Memory Test Challenge is designed to help you improve your short-term memory capacity through an engaging and progressive number memorization game. Whether you're a student looking to enhance your study skills or someone interested in maintaining cognitive fitness, this game offers a fun way to challenge yourself.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Scientific Background</h3>
+                <ul>
+                    <li>Based on proven memory enhancement techniques</li>
+                    <li>Follows cognitive load theory principles</li>
+                    <li>Progressive difficulty matches brain's learning patterns</li>
+                    <li>Regular practice can improve working memory capacity</li>
+                    <li>Designed based on cognitive psychology research</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Who Can Benefit?</h3>
+                <ul>
+                    <li>Students preparing for exams</li>
+                    <li>Professionals seeking mental sharpness</li>
+                    <li>Seniors maintaining cognitive health</li>
+                    <li>Anyone looking to improve memory skills</li>
+                    <li>People interested in brain training</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-play">
+        <h2>How to Play</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>Game Rules</h3>
+                <ul>
+                    <li>The game consists of 20 progressive levels</li>
+                    <li>Each level displays a number for 5 seconds</li>
+                    <li>Numbers increase from 1 to 20 digits</li>
+                    <li>Memorize and input the number correctly</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Scoring System</h3>
+                <ul>
+                    <li>Points per level = Level number × 5</li>
+                    <li>Level 1: 5 points</li>
+                    <li>Level 20: 100 points</li>
+                    <li>Maximum total score: 1050 points</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Performance Levels</h3>
+                <ul>
+                    <li>Excellent: 840+ points</li>
+                    <li>Good: 630-839 points</li>
+                    <li>Average: 420-629 points</li>
+                    <li>Need Practice: Below 420 points</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="benefits">
+        <h2>Benefits of Memory Training</h2>
+        <div class="benefits">
+            <div class="benefit-item">
+                <h3>Cognitive Enhancement</h3>
+                <ul>
+                    <li>Improved information processing speed</li>
+                    <li>Enhanced mental agility and flexibility</li>
+                    <li>Better concentration and focus</li>
+                    <li>Strengthened problem-solving abilities</li>
+                </ul>
+            </div>
+            <div class="benefit-item">
+                <h3>Academic & Professional Growth</h3>
+                <ul>
+                    <li>Better retention of study materials</li>
+                    <li>Improved exam performance</li>
+                    <li>Enhanced workplace productivity</li>
+                    <li>Better multitasking abilities</li>
+                </ul>
+            </div>
+            <div class="benefit-item">
+                <h3>Long-term Brain Health</h3>
+                <ul>
+                    <li>Maintained cognitive function with age</li>
+                    <li>Reduced risk of memory-related decline</li>
+                    <li>Improved neural plasticity</li>
+                    <li>Better overall mental wellbeing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="tips">
+        <h2>Tips for Success</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>Memory Techniques</h3>
+                <ul>
+                    <li>Break numbers into smaller chunks</li>
+                    <li>Create patterns or rhythms</li>
+                    <li>Use visualization techniques</li>
+                    <li>Practice regular repetition</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>Preparation</h3>
+                <ul>
+                    <li>Find a quiet environment</li>
+                    <li>Stay focused and alert</li>
+                    <li>Take deep breaths before starting</li>
+                    <li>Maintain good posture</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html> 
